@@ -80,7 +80,7 @@ const AnimationEngine = {
       '.section-header',
       '.specs-hero-card',
       '.timeline-item',
-      '.showroom-grid .model-card',
+      '.vehicle-spotlight',
       '.model-grid .model-grid-card',
       '.pillars-grid .pillar-card',
       '.testimonials-grid .testimonial-card',
