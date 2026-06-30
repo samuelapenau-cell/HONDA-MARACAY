@@ -1,0 +1,20 @@
+# System
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+
+# Assets - large image originals if desired
+# PORTADA/
+# MODELOS/
+
+# Logs
+*.log
+
+# Skills
+.agents/
+skills-lock.json
