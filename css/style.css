@@ -684,175 +684,193 @@ input, select, textarea {
    SHOWROOM
    ============================================ */
 
-/* --- Vehicle Showcase (horizontal banner) --- */
 .showroom {
   padding: 100px 24px;
-  background: #faf7f5;
-  position: relative;
-}
-
-.vehicle-showcase {
   max-width: var(--max-width);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  position: relative;
+}
+.showroom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--honda-red), transparent);
+  opacity: 0.2;
 }
 
-.vehicle-spotlight {
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
+.showroom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.model-card {
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--white);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
-}
-.vehicle-spotlight.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.vehicle-spotlight:hover {
-  box-shadow: 0 12px 48px rgba(0,0,0,0.06), 0 4px 16px rgba(228,0,43,0.04);
+  border: 1px solid var(--chrome);
+  transition: all 0.4s var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
 }
 
-.vehicle-spotlight-image {
-  width: 50%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  position: relative;
-  flex-shrink: 0;
+.model-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 8px 24px rgba(228,0,43,0.06);
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(228,0,43,0.15);
 }
-.vehicle-spotlight-image img {
+
+.model-card--featured {
+  grid-row: span 2;
+}
+
+.model-visual {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+}
+.model-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.06) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.model-img {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+
+.model-img--primary {
+  opacity: 1;
+}
+
+.model-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.7s var(--ease-out-expo);
-}
-.vehicle-spotlight:hover .vehicle-spotlight-image img {
-  transform: scale(1.04);
+  transition: transform 0.6s var(--ease-out-expo);
 }
 
-.vehicle-spotlight-content {
-  flex: 1;
+.model-card:hover .model-photo {
+  transform: scale(1.05);
+}
+
+.model-card:hover .model-silhouette {
+  color: rgba(0,0,0,0.15);
+}
+
+.model-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.model-badge.hybrid {
+  background: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.model-badge.safety {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.model-badge.innovation {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.model-info {
+  padding: 20px 22px;
+}
+
+.model-meta {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 44px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-.vehicle-spotlight-badge {
-  display: inline-block;
+.model-category {
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--honda-red);
-  margin-bottom: 8px;
 }
 
-.vehicle-spotlight-name {
+.model-highlight {
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+
+.model-name {
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--black);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
-.vehicle-spotlight-specs {
-  font-size: 0.85rem;
-  color: var(--honda-red);
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.vehicle-spotlight-desc {
-  font-size: 0.9rem;
-  color: var(--gray);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  max-width: 440px;
-}
-
-.vehicle-spotlight-actions {
+.model-cta {
   display: flex;
-  gap: 12px;
-}
-.vehicle-spotlight-actions .btn-primary {
-  padding: 11px 28px;
-  font-size: 0.85rem;
-}
-.vehicle-spotlight-actions .btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 11px 24px;
-  background: #25D366;
-  color: var(--white);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: all 0.25s var(--ease-out-expo);
-}
-.vehicle-spotlight-actions .btn-whatsapp:hover {
-  background: #1da851;
-  transform: scale(1.03);
+  gap: 10px;
+  margin-top: auto;
 }
 
-/* Alternating layout */
-.vehicle-spotlight--reverse {
-  flex-direction: row-reverse;
-}
-.vehicle-spotlight--reverse .vehicle-spotlight-content {
-  background: #f5f6f8;
-}
-
-.vehicle-spotlight:nth-child(1) { transition-delay: 0s; }
-.vehicle-spotlight:nth-child(2) { transition-delay: 0.1s; }
-.vehicle-spotlight:nth-child(3) { transition-delay: 0.2s; }
-
-/* Responsive */
+/* Showroom Responsive */
 @media (max-width: 968px) {
-  .vehicle-spotlight {
-    flex-direction: column !important;
-  }
-  .vehicle-spotlight-image {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-  }
-  .vehicle-spotlight-content {
-    padding: 32px 28px;
-  }
+  .showroom { padding: 60px 24px; }
+  .showroom-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .showroom {
-    padding: 60px 16px;
-  }
-  .vehicle-spotlight-image {
-    aspect-ratio: 16 / 9;
-  }
-  .vehicle-spotlight-content {
-    padding: 24px 20px;
-  }
-  .vehicle-spotlight-name {
-    font-size: 1.35rem;
-  }
-  .vehicle-spotlight-actions {
-    flex-direction: column;
-  }
-  .vehicle-spotlight-actions .btn-primary,
-  .vehicle-spotlight-actions .btn-whatsapp {
-    text-align: center;
-    justify-content: center;
-  }
+  .showroom { padding: 60px 16px; }
+  .showroom-grid { grid-template-columns: 1fr; }
+  .model-info { padding: 14px 16px; }
 }
+
+/* --- Showroom Grid Cards Reveal --- */
+.showroom-grid .model-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s var(--ease-out-expo),
+              border-color 0.4s var(--ease-out-strong);
+  will-change: transform;
+}
+.showroom-grid .model-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showroom-grid .model-card:nth-child(1) { transition-delay: 0s; }
+.showroom-grid .model-card:nth-child(2) { transition-delay: 0.1s; }
+.showroom-grid .model-card:nth-child(3) { transition-delay: 0.2s; }
 
 /* ============================================
    BRAND STORY — Honda Legacy
@@ -1783,7 +1801,6 @@ input, select, textarea {
     margin-bottom: 36px;
   }
 
-  .showroom,
   .pillars,
   .service,
   .brand-story,
@@ -1793,10 +1810,6 @@ input, select, textarea {
   .taller-scheduler,
   .respuestos-benefits {
     padding: 60px 16px;
-  }
-
-  .showroom {
-    padding: 60px 24px;
   }
 
   .service-form {
@@ -3238,6 +3251,10 @@ input, select, textarea {
   animation: detailFadeIn 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 
+/* ============================================
+   PREMIUM MODEL DETAIL VIEW
+   ============================================ */
+
 .model-detail-page {
   animation: detailFadeIn 0.5s cubic-bezier(0.16,1,0.3,1);
   background: #ffffff;
@@ -3255,97 +3272,168 @@ input, select, textarea {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Back button - floating pill */
-/* Detail Hero */
-.detail-hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
+/* --- Immersive Full-Viewport Hero --- */
+.detail-hero--immersive {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
   align-items: center;
-  padding: 48px;
-  border-radius: 24px;
-  margin-bottom: 48px;
-  position: relative;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   overflow: hidden;
-  min-height: 380px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
 }
 
-.detail-hero::before {
-  content: '';
+.detail-hero-overlay {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(228,0,43,0.3), transparent 50%, rgba(0,0,0,0.05));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
 }
 
-.detail-hero-visual {
+.detail-hero-body {
   position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  min-height: 340px;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 28px;
+  text-align: center;
 }
 
-.detail-hero-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.6s cubic-bezier(0.16,1,0.3,1);
+.detail-hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--honda-red);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
-.detail-hero:hover .detail-hero-image {
-  transform: scale(1.02);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-}
-
-.detail-hero-info h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+.detail-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 12px;
-  line-height: 1.1;
-  color: var(--black);
+  line-height: 1.05;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.3);
 }
 
 .detail-hero-tagline {
-  font-size: 1.1rem;
-  color: #E4002B;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
 }
 
 .detail-hero-desc {
   font-size: 0.95rem;
-  color: rgba(0,0,0,0.65);
+  color: rgba(255,255,255,0.65);
   line-height: 1.7;
-  margin-bottom: 20px;
-  max-width: 600px;
+  margin: 0 auto 24px;
+  max-width: 560px;
 }
 
 .detail-hero-price {
   font-size: 1.5rem;
   font-weight: 300;
-  margin-bottom: 24px;
-  color: rgba(0,0,0,0.6);
+  margin-bottom: 28px;
+  color: rgba(255,255,255,0.7);
 }
 
 .detail-hero-price strong {
   font-weight: 800;
-  color: var(--black);
+  color: #ffffff;
 }
 
 .detail-hero-cta {
   display: flex;
   gap: 12px;
+  justify-content: center;
+}
+
+.detail-hero-cta .btn-primary {
+  background: var(--honda-red);
+  color: #fff;
+  padding: 14px 36px;
+  font-size: 0.95rem;
+  border-radius: 50px;
+}
+
+.detail-hero-cta .btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  padding: 14px 32px;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s var(--ease-out-expo);
+}
+
+.detail-hero-cta .btn-whatsapp:hover {
+  background: #1da851;
+  transform: scale(1.03);
+}
+
+.detail-hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255,255,255,0.5);
+  animation: scrollHint 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+}
+
+/* Responsive hero */
+@media (max-width: 968px) {
+  .detail-hero--immersive {
+    min-height: 500px;
+  }
+  .detail-hero-body {
+    padding: 32px 20px;
+  }
+  .detail-hero-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .detail-hero--immersive {
+    min-height: 420px;
+  }
+  .detail-hero-title {
+    font-size: 1.8rem;
+  }
+  .detail-hero-desc {
+    font-size: 0.85rem;
+  }
+  .detail-hero-price {
+    font-size: 1.2rem;
+  }
+  .detail-hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* Detail Tabs */
@@ -4066,8 +4154,6 @@ input, select, textarea {
 }
 
 @media (max-width: 968px) {
-  .detail-hero { grid-template-columns: 1fr; gap: 24px; padding: 24px; min-height: auto; }
-  .detail-hero-visual { padding: 0; }
   .detail-tabs { width: 100%; }
   .detail-specs-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-features-grid { grid-template-columns: 1fr; }
@@ -4084,7 +4170,6 @@ input, select, textarea {
 
 @media (max-width: 640px) {
   .detail-specs-grid { grid-template-columns: 1fr; }
-  .detail-hero { padding: 20px; }
   .detail-tab { padding: 10px 16px; font-size: 0.75rem; }
   .design-grid { grid-template-columns: 1fr; }
   .design-card-image { height: 140px; }
@@ -4218,23 +4303,6 @@ input, select, textarea {
   .respuestos-benefit-card p {
     font-size: 0.88rem;
   }
-}
-
-/* ============================= */
-/* Hero Car Image                */
-/* ============================= */
-.detail-hero-image {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.6s cubic-bezier(0.16,1,0.3,1);
-}
-
-.detail-hero:hover .detail-hero-image {
-  transform: scale(1.02);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
 /* ============================= */
@@ -4875,20 +4943,6 @@ html {
 .btn-primary:hover::after {
   opacity: 1;
 }
-
-/* --- Detail Hero Display Font --- */
-.detail-hero-info h2 {
-  font-family: var(--font-display);
-}
-.detail-hero-visual::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(228,0,43,0.08), transparent 50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* --- Detail Tab Active Lift --- */
 .detail-tab.active {
   transform: translateY(-1px);
@@ -5199,7 +5253,9 @@ html {
   }
   .reveal, .reveal-left, .reveal-right, .reveal-up, .reveal-scale, .reveal-clip,
   .section-header, .specs-hero-card, .timeline-item,
-  .vehicle-spotlight,
+  .detail-hero--immersive,
+  .detail-hero-scroll,
+  .showroom-grid .model-card,
   .pillars-grid .pillar-card, .testimonials-grid .testimonial-card,
   .brand-philosophy .philosophy-card, .detail-specs-grid .detail-spec,
   .detail-features-grid .detail-feature, .design-grid .design-card,
