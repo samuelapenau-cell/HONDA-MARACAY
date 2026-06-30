@@ -685,61 +685,47 @@ input, select, textarea {
    ============================================ */
 
 .showroom {
-  padding: 100px 24px;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  padding: 100px 0;
+  background: #faf7f5;
   position: relative;
-}
-.showroom::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  max-width: 300px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--honda-red), transparent);
-  opacity: 0.2;
 }
 
 .showroom-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 28px;
+  padding: 0 24px;
 }
 
 .model-card {
-  border-radius: var(--radius-lg);
+  border-radius: 24px;
   overflow: hidden;
   background: var(--white);
-  border: 1px solid var(--chrome);
-  transition: all 0.4s var(--ease-out-expo);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  transition: all 0.5s var(--ease-out-expo);
   display: flex;
   flex-direction: column;
 }
 
 .model-card:hover {
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 8px 24px rgba(228,0,43,0.06);
-  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.08), 0 8px 24px rgba(228,0,43,0.06);
+  transform: translateY(-6px) scale(1.01);
   border-color: rgba(228,0,43,0.15);
-}
-
-.model-card--featured {
-  grid-row: span 2;
 }
 
 .model-visual {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
 }
 .model-visual::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.06) 100%);
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.04) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -750,102 +736,109 @@ input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.6s var(--ease-out-expo);
-}
-
-.model-img--primary {
-  opacity: 1;
 }
 
 .model-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-out-expo);
-}
-
-.detail-hero-price {
-  display: none;
+  transition: transform 0.7s var(--ease-out-expo);
 }
 
 .model-card:hover .model-photo {
-  transform: scale(1.05);
-}
-
-.model-card:hover .model-silhouette {
-  color: rgba(0,0,0,0.15);
+  transform: scale(1.06);
 }
 
 .model-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 5px 12px;
-  border-radius: 50px;
-  font-size: 0.65rem;
+  top: 16px;
+  left: 16px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   z-index: 2;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .model-badge.hybrid {
-  background: rgba(52, 211, 153, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  background: rgba(52, 211, 153, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .model-badge.safety {
-  background: rgba(96, 165, 250, 0.2);
-  color: #60a5fa;
-  border: 1px solid rgba(96, 165, 250, 0.3);
+  background: rgba(96, 165, 250, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .model-badge.innovation {
-  background: rgba(251, 191, 36, 0.2);
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  background: rgba(228,0,43,0.9);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .model-info {
-  padding: 20px 22px;
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 }
 
 .model-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
 }
 
 .model-category {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--honda-red);
 }
 
 .model-highlight {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--gray);
 }
 
 .model-name {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 14px;
+  color: var(--black);
+  margin: 2px 0 0;
 }
 
 .model-cta {
   display: flex;
-  gap: 10px;
-  margin-top: auto;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--chrome);
 }
 
+.model-cta .btn-primary {
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  flex: 1;
+  text-align: center;
+}
+
+.model-cta .btn-whatsapp-sm {
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  flex: 1;
+  text-align: center;
+}
 
 /* ============================================
    BRAND STORY — Honda Legacy
@@ -1786,6 +1779,29 @@ input, select, textarea {
   .taller-scheduler,
   .respuestos-benefits {
     padding: 60px 16px;
+  }
+
+  .showroom {
+    padding: 60px 0;
+  }
+
+  .showroom-grid {
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .model-info {
+    padding: 18px 20px;
+  }
+
+  .model-name {
+    font-size: 1.15rem;
+  }
+
+  .model-cta .btn-primary,
+  .model-cta .btn-whatsapp-sm {
+    padding: 10px 16px;
+    font-size: 0.8rem;
   }
 
   .service-form {
@@ -4076,7 +4092,7 @@ input, select, textarea {
 }
 
 @media (max-width: 640px) {
-  .showroom-grid { grid-template-columns: 1fr; }
+  .showroom-grid { grid-template-columns: 1fr; gap: 16px; padding: 0 16px; }
   .detail-specs-grid { grid-template-columns: 1fr; }
   .detail-hero { padding: 20px; }
   .detail-tab { padding: 10px 16px; font-size: 0.75rem; }
