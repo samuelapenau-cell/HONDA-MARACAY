@@ -684,116 +684,117 @@ input, select, textarea {
    SHOWROOM
    ============================================ */
 
-/* --- Vehicle Showcase (full-width spotlight) --- */
+/* --- Vehicle Showcase (horizontal banner) --- */
 .showroom {
-  padding: 100px 0;
+  padding: 100px 24px;
   background: #faf7f5;
   position: relative;
-  overflow: hidden;
 }
 
 .vehicle-showcase {
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  gap: 32px;
 }
 
 .vehicle-spotlight {
   display: flex;
-  align-items: stretch;
-  min-height: 70vh;
-  position: relative;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
 }
 .vehicle-spotlight.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.vehicle-spotlight:hover {
+  box-shadow: 0 12px 48px rgba(0,0,0,0.06), 0 4px 16px rgba(228,0,43,0.04);
+}
 
 .vehicle-spotlight-image {
-  width: 55%;
+  width: 50%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 .vehicle-spotlight-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.8s var(--ease-out-expo);
+  transition: transform 0.7s var(--ease-out-expo);
 }
 .vehicle-spotlight:hover .vehicle-spotlight-image img {
-  transform: scale(1.03);
-}
-.vehicle-spotlight-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, transparent 50%);
-  pointer-events: none;
+  transform: scale(1.04);
 }
 
 .vehicle-spotlight-content {
-  width: 45%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 60px;
-  background: var(--white);
+  padding: 40px 44px;
 }
 
 .vehicle-spotlight-badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--honda-red);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .vehicle-spotlight-name {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: 1.65rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
   color: var(--black);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .vehicle-spotlight-specs {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--honda-red);
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .vehicle-spotlight-desc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--gray);
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 420px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 440px;
 }
 
 .vehicle-spotlight-actions {
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 .vehicle-spotlight-actions .btn-primary {
-  padding: 14px 36px;
-  font-size: 0.95rem;
+  padding: 11px 28px;
+  font-size: 0.85rem;
 }
 .vehicle-spotlight-actions .btn-whatsapp {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
+  gap: 6px;
+  padding: 11px 24px;
   background: #25D366;
   color: var(--white);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   border-radius: 50px;
   text-decoration: none;
@@ -811,42 +812,37 @@ input, select, textarea {
 .vehicle-spotlight--reverse .vehicle-spotlight-content {
   background: #f5f6f8;
 }
-.vehicle-spotlight--reverse .vehicle-spotlight-image::after {
-  background: linear-gradient(225deg, rgba(0,0,0,0.02) 0%, transparent 50%);
-}
 
 .vehicle-spotlight:nth-child(1) { transition-delay: 0s; }
-.vehicle-spotlight:nth-child(2) { transition-delay: 0.15s; }
-.vehicle-spotlight:nth-child(3) { transition-delay: 0.3s; }
+.vehicle-spotlight:nth-child(2) { transition-delay: 0.1s; }
+.vehicle-spotlight:nth-child(3) { transition-delay: 0.2s; }
 
 /* Responsive */
 @media (max-width: 968px) {
   .vehicle-spotlight {
     flex-direction: column !important;
-    min-height: auto;
   }
   .vehicle-spotlight-image {
     width: 100%;
-    height: 50vh;
+    aspect-ratio: 16 / 10;
   }
   .vehicle-spotlight-content {
-    width: 100%;
-    padding: 48px 32px;
-  }
-  .vehicle-spotlight-desc {
-    max-width: none;
+    padding: 32px 28px;
   }
 }
 
 @media (max-width: 640px) {
+  .showroom {
+    padding: 60px 16px;
+  }
   .vehicle-spotlight-image {
-    height: 40vh;
+    aspect-ratio: 16 / 9;
   }
   .vehicle-spotlight-content {
-    padding: 36px 24px;
+    padding: 24px 20px;
   }
   .vehicle-spotlight-name {
-    font-size: 1.75rem;
+    font-size: 1.35rem;
   }
   .vehicle-spotlight-actions {
     flex-direction: column;
@@ -1800,7 +1796,7 @@ input, select, textarea {
   }
 
   .showroom {
-    padding: 60px 0;
+    padding: 60px 24px;
   }
 
   .service-form {
