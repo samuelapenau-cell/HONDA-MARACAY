@@ -1684,36 +1684,88 @@ input, select, textarea {
    ============================================ */
 
 @media (max-width: 968px) {
+  .hamburger {
+    display: flex;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .header-actions .btn-whatsapp {
+    display: none;
+  }
+
   .header-nav {
     position: fixed;
-    top: var(--header-height);
+    top: 0;
     left: 0;
     right: 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--chrome);
-    padding: 16px 24px;
+    bottom: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: calc(var(--header-height) + 20px) 24px 40px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.3s var(--ease-out-expo);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-12px) scale(0.98);
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999;
+  }
+  .header-nav::before {
+    content: '';
+    position: absolute;
+    top: var(--header-height);
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--chrome), transparent);
+    opacity: 0.5;
   }
 
   .header-nav.open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   .header-nav ul {
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
   .header-nav a {
     display: block;
-    padding: 12px 16px;
-    font-size: 1rem;
+    padding: 14px 18px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .header-nav a:hover,
+  .header-nav a:active {
+    background: var(--honda-red-dim);
+    color: var(--honda-red);
+  }
+
+  .nav-dropdown .nav-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-dropdown .nav-dropdown-toggle::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--gray);
+    border-bottom: 2px solid var(--gray);
+    transform: rotate(45deg);
+    margin-left: 8px;
+    transition: transform 0.25s;
+  }
+  .nav-dropdown.dropdown-open .nav-dropdown-toggle::after {
+    transform: rotate(-135deg);
+    margin-top: 4px;
   }
 
   .dropdown-menu {
@@ -1723,8 +1775,12 @@ input, select, textarea {
     visibility: visible;
     box-shadow: none;
     border: none;
-    padding: 0 0 0 16px;
+    padding: 4px 0 4px 16px;
     background: transparent;
+    display: none;
+  }
+  .nav-dropdown.dropdown-open .dropdown-menu {
+    display: block;
   }
 
   .nav-dropdown:hover .dropdown-menu,
@@ -1732,12 +1788,19 @@ input, select, textarea {
     transform: none;
   }
 
-  .hamburger {
-    display: flex;
+  .dropdown-item {
+    padding: 10px 14px !important;
+    border-radius: 10px;
   }
-
-  .header-actions .btn-whatsapp {
-    display: none;
+  .dropdown-item .dd-icon {
+    width: 32px;
+    height: 18px;
+  }
+  .dropdown-item span {
+    font-size: 0.9rem;
+  }
+  .dropdown-item span small {
+    font-size: 0.72rem;
   }
 
   .brand-founder {
@@ -1781,24 +1844,74 @@ input, select, textarea {
 
 @media (max-width: 480px) {
   :root {
-    --header-height: 60px;
+    --header-height: 56px;
   }
 
   .header-inner {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .header-logo .logo-h {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .logo-text {
+    font-size: 0.8rem;
+  }
+  .logo-text small {
+    font-size: 0.55rem;
+  }
+
+  .hamburger {
+    width: 26px;
+    gap: 4px;
+  }
+  .hamburger span {
+    height: 1.5px;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  .header-nav {
+    padding: calc(var(--header-height) + 12px) 16px 32px;
+  }
+  .header-nav::before {
+    left: 16px;
+    right: 16px;
+  }
+  .header-nav a {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+  .dropdown-item {
+    padding: 8px 12px !important;
+  }
+  .dropdown-item span {
     font-size: 0.85rem;
   }
 
   .section-header {
-    margin-bottom: 36px;
+    margin-bottom: 32px;
+  }
+  .section-tag {
+    font-size: 0.65rem;
+    margin-bottom: 8px;
+  }
+  .section-tag::before,
+  .section-tag::after {
+    width: 16px;
+    margin: 0 6px;
+  }
+  .section-title {
+    font-size: clamp(1.4rem, 6vw, 1.7rem);
+  }
+  .section-desc {
+    font-size: 0.85rem;
   }
 
   .pillars,
@@ -1809,11 +1922,11 @@ input, select, textarea {
   .taller-benefits,
   .taller-scheduler,
   .respuestos-benefits {
-    padding: 60px 16px;
+    padding: 48px 16px;
   }
 
   .service-form {
-    padding: 24px 18px;
+    padding: 20px 16px;
   }
 
   .brand-philosophy {
@@ -1826,16 +1939,17 @@ input, select, textarea {
 
   .footer-links {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-
   .footer-bottom {
     flex-direction: column;
     text-align: center;
-    gap: 8px;
+    gap: 6px;
+    font-size: 0.68rem;
   }
 
   .modal {
-    padding: 28px 20px;
+    padding: 24px 18px;
   }
 }
 
@@ -3911,11 +4025,6 @@ input, select, textarea {
 
 /* Swatch slides (for WR-V without images) */
 .color-carousel-slide.swatch { padding: 0; }
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
 
 /* Comparison Table */
 .detail-compare-table {
@@ -5592,7 +5701,7 @@ html {
 }
 
 /* ============================================
-   MOBILE OPTIMIZATION — Comprehensive
+   MOBILE OPTIMIZATION — Premium Mobile UX
    ============================================ */
 
 /* --- Tablet (max-width: 968px) --- */
@@ -5603,165 +5712,445 @@ html {
   .model-testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
   .related-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .related-image { width: 160px; height: 120px; }
-
   .page-hero { padding: 110px 20px 60px; }
   .page-hero--short { padding: 100px 20px 50px; }
-
   .inv-layout { grid-template-columns: 1fr; }
   .inv-filters { display: none; }
   .inv-tabs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
   .faq-section { padding: 50px 20px 60px; }
-
   .color-carousel-viewport { height: 280px; }
   .color-arrow { opacity: 1; width: 36px; height: 36px; }
-
-  .detail-versions-grid { grid-template-columns: 1fr; }
-
   .brand-founder { grid-template-columns: 1fr; gap: 32px; }
   .founder-quote { padding: 28px 24px; }
   .founder-metrics { grid-template-columns: repeat(2, 1fr); }
   .brand-philosophy { grid-template-columns: repeat(2, 1fr); }
-
-  .model-download-bottom { padding: 0 20px 50px; }
-  .model-download-bottom .detail-download-card { padding: 30px 28px !important; }
-
   .hero-content { margin-top: -20px; }
 }
 
 /* --- Mobile (max-width: 640px) --- */
 @media (max-width: 640px) {
-  .model-gallery { padding: 60px 16px; }
-  .model-gallery-main { min-height: 240px; }
-  .model-gallery-badges { bottom: 12px; left: 12px; gap: 6px; }
-  .gallery-badge { font-size: 0.65rem; padding: 4px 10px; }
-  .gallery-side-card { padding: 18px 16px; }
-  .gallery-side-icon { width: 36px; height: 36px; }
-  .gallery-side-card h4 { font-size: 0.9rem; }
-  .gallery-side-card p { font-size: 0.78rem; }
-
-  .model-benefits { padding: 60px 16px; }
-  .model-benefits-grid { grid-template-columns: 1fr; }
-  .benefit-card-model { padding: 24px 18px; }
-  .benefit-model-icon { width: 42px; height: 42px; }
-  .benefit-card-model h3 { font-size: 0.95rem; }
-  .benefit-card-model p { font-size: 0.8rem; }
-
-  .model-specs { padding: 60px 16px; }
-  .spec-item { padding: 14px 16px; gap: 12px; }
-  .spec-icon { width: 36px; height: 36px; }
-  .spec-icon svg { width: 18px; height: 18px; }
-  .spec-value { font-size: 0.85rem; }
-
-  .model-testimonials { padding: 60px 16px; }
-  .testimonial-card-model { padding: 22px 18px; }
-  .testimonial-card-model > p { font-size: 0.82rem; }
-  .testimonial-author-model .testimonial-avatar { width: 34px; height: 34px; font-size: 0.8rem; }
-
-  .model-related { padding: 60px 16px; }
-  .related-image { width: 120px; height: 100px; }
-  .related-info { padding: 14px 16px; }
-  .related-info h4 { font-size: 0.95rem; }
-
-  .model-download-bottom { padding: 0 16px 50px; }
-  .model-download-bottom .detail-download-card { padding: 28px 20px !important; }
-  .model-download-bottom .detail-download-icon { width: 52px; height: 52px; }
-  .model-download-bottom .detail-download-text h4 { font-size: 1.05rem !important; }
-  .model-download-bottom .detail-download-text p { font-size: 0.82rem !important; }
-
-  .page-hero { padding: 100px 16px 50px; }
-  .page-hero--short { padding: 90px 16px 40px; }
-
-  .faq-section { padding: 40px 16px 50px; }
-  .faq-question { padding: 14px 16px; font-size: 0.82rem; }
-  .faq-answer p { padding: 0 16px 14px; font-size: 0.8rem; }
-
-  .color-carousel-viewport { height: 220px; }
-  .color-carousel-slide { padding: 16px; }
-  .color-arrow { width: 32px; height: 32px; }
-  .color-swatches { gap: 8px; }
-  .color-swatch { width: 28px; height: 28px; }
-
-  .detail-versions-card { padding: 24px 20px; }
-  .detail-version-title { font-size: 1.1rem; }
-  .detail-version-price { font-size: 1rem; }
-
-  .inventory-container { padding: 0 16px; }
-  .inv-toolbar { flex-direction: column; align-items: stretch; }
-  .inv-search-wrap { min-width: 0; }
-  .inv-sort { width: 100%; }
-  .inv-grid { grid-template-columns: 1fr; }
-  .inv-card { padding: 16px; }
-  .inv-card-image { height: 180px; }
-
-  .service-package { padding: 28px 20px; }
-  .pkg-features li { font-size: 0.82rem; padding: 8px 0; }
-  .financing-card { padding: 28px 18px; }
-  .financing-card h3 { font-size: 1rem; }
-  .financing-price { font-size: 1.6rem; }
-
-  .brand-founder { gap: 24px; }
-  .founder-quote { padding: 22px 18px; }
-  .founder-quote blockquote { font-size: 1rem; }
-  .founder-metrics { grid-template-columns: 1fr; gap: 16px; }
-  .brand-philosophy { grid-template-columns: 1fr; }
-  .timeline-item { padding: 16px 0; }
-  .timeline-item p { font-size: 0.85rem; }
-
-  .site-footer .footer-main { gap: 28px; }
-  .site-footer .footer-links { gap: 20px; }
-  .site-footer .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-}
-
-/* --- Small Mobile (max-width: 480px) --- */
-@media (max-width: 480px) {
   .hero { min-height: 92vh; }
   .hero-content { margin-top: 0; padding: 0 16px; }
   .hero-badge { font-size: 0.65rem; margin-bottom: 20px; padding: 5px 14px; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem) !important; }
   .hero-sub { font-size: 0.9rem !important; margin-bottom: 24px; }
-  .hero-phrase { font-size: 0.88rem; }
-  .hero-phrase::before { left: -16px; font-size: 1.8rem; }
-  .hero-phrase::after { right: -16px; font-size: 1.8rem; }
+  .hero-phrase { font-size: 0.9rem; max-width: 100%; }
+  .hero-phrase::before { left: -16px; font-size: 1.8rem; top: -2px; }
+  .hero-phrase::after { right: -16px; font-size: 1.8rem; bottom: -8px; }
   .hero-stats { gap: 20px; margin-top: 32px; flex-wrap: wrap; }
   .stat-num { font-size: 1.1rem; }
-  .stat-label { font-size: 0.68rem; }
+  .stat-label { font-size: 0.65rem; }
   .hero-scroll { bottom: 20px; }
+  .hero-scroll svg { width: 18px; height: 26px; }
 
-  .model-gallery { padding: 40px 12px; }
-  .model-gallery-main { min-height: 180px; }
-  .model-benefits { padding: 40px 12px; }
-  .model-specs { padding: 40px 12px; }
-  .model-testimonials { padding: 40px 12px; }
-  .model-related { padding: 40px 12px; }
+  .model-gallery { padding: 48px 16px; }
+  .model-gallery-main { min-height: 200px; border-radius: 14px; }
+  .model-gallery-badges { bottom: 10px; left: 10px; gap: 5px; }
+  .gallery-badge { font-size: 0.6rem; padding: 3px 9px; }
+  .gallery-side-card { padding: 16px 14px; border-radius: 12px; }
+  .gallery-side-icon { width: 32px; height: 32px; border-radius: 8px; }
+  .gallery-side-card h4 { font-size: 0.85rem; }
+  .gallery-side-card p { font-size: 0.75rem; }
+  .model-gallery-side { gap: 8px; }
+
+  .model-benefits { padding: 48px 16px; }
+  .model-benefits-grid { grid-template-columns: 1fr; gap: 14px; }
+  .benefit-card-model { padding: 20px 16px; border-radius: 14px; }
+  .benefit-model-icon { width: 38px; height: 38px; border-radius: 10px; margin-bottom: 12px; }
+  .benefit-card-model h3 { font-size: 0.9rem; margin-bottom: 4px; }
+  .benefit-card-model p { font-size: 0.78rem; }
+
+  .model-specs { padding: 48px 16px; }
+  .specs-grid { gap: 10px; }
+  .spec-item { padding: 12px 14px; gap: 10px; border-radius: 10px; }
+  .spec-icon { width: 32px; height: 32px; border-radius: 8px; }
+  .spec-icon svg { width: 16px; height: 16px; }
+  .spec-label { font-size: 0.65rem; margin-bottom: 1px; }
+  .spec-value { font-size: 0.82rem; }
+
+  .model-testimonials { padding: 48px 16px; }
+  .model-testimonials-grid { gap: 14px; }
+  .testimonial-card-model { padding: 20px 16px; border-radius: 14px; }
+  .testimonial-card-model .testimonial-stars { font-size: 0.9rem; margin-bottom: 8px; }
+  .testimonial-card-model > p { font-size: 0.8rem; margin-bottom: 14px; }
+  .testimonial-author-model .testimonial-avatar { width: 32px; height: 32px; font-size: 0.75rem; }
+  .testimonial-author-model strong { font-size: 0.78rem; }
+  .testimonial-author-model span { font-size: 0.68rem; }
+
+  .model-related { padding: 48px 16px; }
+  .related-grid { gap: 14px; }
   .related-image { width: 100px; height: 80px; }
+  .related-card { border-radius: 14px; }
+  .related-info { padding: 12px 14px; }
+  .related-info h4 { font-size: 0.85rem; }
+  .related-tag { font-size: 0.65rem; }
 
-  .page-hero { padding: 80px 12px 40px; }
-  .page-hero--short { padding: 75px 12px 32px; }
+  .section-header { margin-bottom: 28px; }
+  .section-tag { font-size: 0.65rem; padding: 4px 12px; margin-bottom: 8px; }
+  .section-title { font-size: 1.4rem; }
+  .section-desc { font-size: 0.82rem; }
 
-  .faq-section { padding: 30px 12px 40px; }
-  .faq-question { padding: 12px 14px; font-size: 0.78rem; }
+  .model-download-bottom { padding: 0 16px 40px; }
+  .model-download-bottom .detail-download-card { padding: 24px 18px !important; border-radius: 14px; }
+  .model-download-bottom .detail-download-icon { width: 48px; height: 48px; }
+  .model-download-bottom .detail-download-text h4 { font-size: 1rem !important; }
+  .model-download-bottom .detail-download-text p { font-size: 0.8rem !important; }
+  .model-download-bottom .btn-primary { width: 100%; text-align: center; }
 
-  .detail-hero--immersive { min-height: 70vh; padding-left: 16px; }
-  .detail-hero-body { padding: 20px 16px; }
-  .detail-hero-title { font-size: clamp(2rem, 10vw, 3rem) !important; }
-  .detail-hero-title::after { width: 50px; height: 3px; margin-top: 10px; }
-  .detail-hero-tagline { font-size: 0.95rem; padding: 4px 14px; }
-  .detail-hero-desc { font-size: 0.85rem; }
+  .page-hero { padding: 100px 16px 50px; }
+  .page-hero--short { padding: 90px 16px 40px; }
+  .faq-section { padding: 40px 16px 50px; }
+  .faq-question { padding: 14px 16px; font-size: 0.82rem; }
+  .faq-answer p { padding: 0 16px 14px; font-size: 0.8rem; }
 
-  .color-carousel-viewport { height: 180px; border-radius: 14px; }
-  .color-carousel-slide { padding: 10px; }
-  .color-carousel { gap: 12px; }
+  .color-carousel-viewport { height: 200px; }
+  .color-carousel-slide { padding: 12px; }
+  .color-arrow { width: 30px; height: 30px; font-size: 1.2rem; }
+  .color-swatches { gap: 6px; }
+  .color-swatch { width: 26px; height: 26px; }
 
-  .detail-versions-card { padding: 20px 16px; }
-  .detail-versions-grid { gap: 16px; }
+  .inventory-container { padding: 0 16px; }
+  .inv-toolbar { flex-direction: column; align-items: stretch; }
+  .inv-search-wrap { min-width: 0; }
+  .inv-sort { width: 100%; }
+  .inv-grid { grid-template-columns: 1fr; gap: 14px; }
+  .inv-card { padding: 14px; border-radius: 14px; }
+  .inv-card-image { height: 170px; border-radius: 10px; }
+  .inv-card-title { font-size: 0.95rem; }
 
-  .inv-card-image { height: 150px; }
+  .service-package { padding: 24px 18px; border-radius: 16px; }
+  .service-package h3 { font-size: 1.1rem; }
+  .pkg-desc { font-size: 0.82rem; }
+  .pkg-features li { font-size: 0.8rem; padding: 7px 0; }
+  .pkg-features li::before { margin-right: 8px; }
 
-  .service-package { padding: 22px 16px; }
-  .packages-grid { gap: 14px; }
+  .brand-founder { gap: 20px; }
+  .founder-quote { padding: 20px 16px; border-radius: 14px; }
+  .founder-quote blockquote { font-size: 0.95rem; }
+  .founder-quote cite { font-size: 0.8rem; }
+  .founder-metrics { grid-template-columns: 1fr; gap: 12px; }
+  .brand-philosophy { grid-template-columns: 1fr; gap: 14px; }
+  .philosophy-card { padding: 24px 18px; border-radius: 14px; }
+  .timeline-item { padding: 14px 0; }
+  .timeline-item p { font-size: 0.82rem; }
 
-  .footer-main { gap: 24px; }
+  .site-footer .footer-main { gap: 24px; }
+  .site-footer .footer-links { gap: 16px; grid-template-columns: 1fr; }
+  .site-footer .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 20px 0; }
+
+  .showroom { padding: 48px 16px; }
+  .showroom-grid { gap: 14px; }
+  .model-info { padding: 12px 14px; }
+  .model-name { font-size: 1rem; }
+  .model-tag { font-size: 0.7rem; }
+
+  .testimonials { padding: 48px 16px; }
+  .testimonials-grid { gap: 14px; }
+  .testimonial-card { padding: 22px 18px; border-radius: 14px; }
+  .testimonial-card p { font-size: 0.82rem; }
+
+  .pillars { padding: 48px 16px; }
+  .pillars-grid { gap: 14px; }
+  .pillar-card { padding: 22px 18px; border-radius: 14px; }
+
+  .benefits-grid { gap: 14px; }
+  .benefit-card { padding: 22px 18px; border-radius: 14px; }
+
+  .btn-primary { padding: 12px 24px; font-size: 0.85rem; }
+
+  .modelo-panel { padding: 40px 16px 60px; }
+  .modelo-hero-card { aspect-ratio: 16 / 9; border-radius: 14px; }
+  .modelo-hero-info { padding: 24px 0 0; }
+  .modelo-hero { grid-template-columns: 1fr; gap: 24px; }
+  .modelo-section { padding: 32px 0; }
+  .modelo-section-title { font-size: 1.2rem; margin-bottom: 20px; }
+
+  .detail-tabs { width: 100%; gap: 2px; overflow-x: auto; }
+  .detail-tab { padding: 10px 14px; font-size: 0.75rem; white-space: nowrap; }
+  .detail-tab-content { padding-top: 24px; }
+  .detail-specs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .detail-features-grid { grid-template-columns: 1fr; gap: 12px; }
+  .detail-feature { padding: 18px; border-radius: 12px; }
+  .design-grid { grid-template-columns: 1fr; gap: 14px; }
+  .design-card-image { height: 140px; }
+  .design-card-body { padding: 16px; }
+  .detail-color-preview { height: 100px; border-radius: 12px; }
+  .detail-color-name { font-size: 0.8rem; }
+  .detail-compare-table { overflow-x: auto; }
+  .compare-row { padding: 10px 12px; gap: 6px; border-radius: 8px; }
+  .compare-feature { font-size: 0.75rem; }
+  .compare-lx, .compare-exl { font-size: 0.72rem; }
+  .testdrive-section { padding: 40px 16px; }
+  .testdrive-inner { grid-template-columns: 1fr; gap: 24px; }
+  .testdrive-image { order: -1; }
+  .testdrive-text h2 { font-size: 1.3rem; }
+  .testdrive-text p { font-size: 0.85rem; }
+  .detail-versions-card { padding: 20px 18px; border-radius: 14px; }
+  .detail-versions-grid { gap: 14px; }
+  .detail-version-title { font-size: 1.05rem; }
+  .detail-version-price { font-size: 0.95rem; }
+
+  .specs-hero { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .specs-hero-card { padding: 14px 12px; }
+  .specs-hero-value { font-size: 0.85rem; }
+
+  .page-hero { min-height: 200px; }
+  .page-hero-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .page-hero-sub { font-size: 0.85rem; }
+}
+
+/* --- Small Mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  :root { --header-height: 56px; }
+
+  .header-inner { padding: 0 12px; }
+  .header-logo .logo-h { width: 28px; height: 28px; }
+  .logo-text { font-size: 0.8rem; }
+  .logo-text small { font-size: 0.6rem; }
+  .header-nav { padding: 12px 16px; }
+  .header-nav a { padding: 10px 14px; font-size: 0.9rem; }
+  .hamburger { width: 24px; gap: 4px; }
+  .hamburger span { height: 1.5px; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  .hero { min-height: 90vh; }
+  .hero-content { margin-top: 0; padding: 0 12px; }
+  .hero-badge { font-size: 0.6rem; margin-bottom: 16px; padding: 4px 12px; }
+  .hero-title { font-size: clamp(1.5rem, 9vw, 2rem) !important; margin-bottom: 14px; }
+  .hero-sub { font-size: 0.85rem !important; margin-bottom: 20px; max-width: 100%; }
+  .hero-phrase { font-size: 0.82rem; max-width: 100%; }
+  .hero-phrase::before { left: -12px; font-size: 1.5rem; top: -2px; }
+  .hero-phrase::after { right: -12px; font-size: 1.5rem; bottom: -8px; }
+  .hero-stats { gap: 16px; margin-top: 28px; flex-wrap: wrap; }
+  .stat { min-width: 80px; }
+  .stat-num { font-size: 1rem; }
+  .stat-label { font-size: 0.62rem; }
+  .hero-scroll { bottom: 16px; }
+  .hero-scroll svg { width: 16px; height: 24px; }
+
+  .showroom { padding: 36px 12px; }
+  .showroom-grid { gap: 12px; }
+  .model-info { padding: 10px 12px; gap: 4px; }
+  .model-name { font-size: 0.9rem; }
+  .model-tag { font-size: 0.65rem; }
+
+  .section-header { margin-bottom: 24px; }
+  .section-tag { font-size: 0.6rem; padding: 3px 10px; margin-bottom: 6px; }
+  .section-title { font-size: 1.25rem; }
+  .section-desc { font-size: 0.78rem; }
+
+  .model-gallery { padding: 32px 12px; }
+  .model-gallery-main { min-height: 160px; border-radius: 12px; }
+  .model-gallery-badges { bottom: 8px; left: 8px; gap: 4px; }
+  .gallery-badge { font-size: 0.55rem; padding: 2px 7px; }
+  .gallery-side-card { padding: 12px 12px; border-radius: 10px; }
+  .gallery-side-icon { width: 28px; height: 28px; border-radius: 6px; margin-bottom: 8px; }
+  .gallery-side-card h4 { font-size: 0.8rem; }
+  .gallery-side-card p { font-size: 0.72rem; }
+  .model-gallery-side { gap: 6px; }
+
+  .model-benefits { padding: 32px 12px; }
+  .benefit-card-model { padding: 16px 14px; border-radius: 12px; }
+  .benefit-model-icon { width: 34px; height: 34px; border-radius: 8px; margin-bottom: 10px; }
+  .benefit-card-model h3 { font-size: 0.85rem; }
+  .benefit-card-model p { font-size: 0.75rem; }
+
+  .model-specs { padding: 32px 12px; }
+  .specs-grid { gap: 8px; }
+  .spec-item { padding: 10px 12px; border-radius: 8px; gap: 8px; }
+  .spec-icon { width: 28px; height: 28px; border-radius: 6px; }
+  .spec-icon svg { width: 14px; height: 14px; }
+  .spec-label { font-size: 0.6rem; }
+  .spec-value { font-size: 0.78rem; }
+
+  .model-testimonials { padding: 32px 12px; }
+  .testimonial-card-model { padding: 16px 14px; border-radius: 12px; }
+  .testimonial-card-model > p { font-size: 0.78rem; }
+  .testimonial-author-model .testimonial-avatar { width: 28px; height: 28px; font-size: 0.7rem; }
+
+  .model-related { padding: 32px 12px; }
+  .related-image { width: 80px; height: 70px; }
+  .related-card { border-radius: 12px; }
+  .related-info { padding: 10px 12px; }
+  .related-info h4 { font-size: 0.8rem; }
+  .related-tag { font-size: 0.6rem; }
+
+  .model-download-bottom { padding: 0 12px 32px; }
+  .model-download-bottom .detail-download-card { padding: 20px 16px !important; border-radius: 12px; gap: 12px; }
+  .model-download-bottom .detail-download-icon { width: 44px; height: 44px; }
+  .model-download-bottom .detail-download-text h4 { font-size: 0.9rem !important; }
+  .model-download-bottom .detail-download-text p { font-size: 0.75rem !important; }
+
+  .page-hero { padding: 70px 12px 36px; min-height: 200px; }
+  .page-hero--short { padding: 65px 12px 28px; }
+  .page-hero-title { font-size: clamp(1.4rem, 6vw, 1.8rem); }
+  .page-hero-sub { font-size: 0.82rem !important; }
+
+  .faq-section { padding: 24px 12px 36px; }
+  .faq-question { padding: 10px 12px; font-size: 0.75rem; }
+  .faq-answer p { padding: 0 12px 12px; font-size: 0.75rem; }
+
+  .color-carousel-viewport { height: 160px; border-radius: 12px; }
+  .color-carousel-slide { padding: 8px; }
+  .color-carousel { gap: 10px; }
+  .color-arrow { width: 26px; height: 26px; font-size: 1rem; }
+  .color-arrow-prev { left: 8px; }
+  .color-arrow-next { right: 8px; }
+
+  .detail-hero--immersive { min-height: 60vh; padding-left: 12px; }
+  .detail-hero-body { padding: 16px 12px; }
+  .detail-hero-title { font-size: clamp(1.6rem, 10vw, 2.2rem) !important; }
+  .detail-hero-title::after { width: 40px; height: 2px; margin-top: 8px; }
+  .detail-hero-tagline { font-size: 0.82rem; padding: 3px 12px; }
+  .detail-hero-desc { font-size: 0.78rem; margin-bottom: 20px; }
+  .detail-hero-scroll { bottom: 20px; }
+
+  .model-detail-inner { padding: 28px 12px 40px; }
+  .detail-tabs { gap: 2px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .detail-tab { padding: 8px 12px; font-size: 0.7rem; white-space: nowrap; }
+  .detail-tab-content { padding-top: 24px; }
+
+  .detail-spec { padding: 14px; gap: 12px; border-radius: 10px; }
+  .detail-spec-icon { width: 36px; height: 36px; }
+  .detail-spec-icon svg { width: 18px; height: 18px; }
+  .detail-spec-label { font-size: 0.65rem; }
+  .detail-spec-value { font-size: 0.82rem; }
+
+  .detail-feature { padding: 14px; border-radius: 10px; gap: 10px; }
+  .detail-feature-icon { width: 32px; height: 32px; }
+  .detail-feature h4 { font-size: 0.85rem; }
+  .detail-feature p { font-size: 0.75rem; }
+
+  .design-card { border-radius: 12px; }
+  .design-card-image { height: 120px; }
+  .design-card-body { padding: 14px; }
+  .design-card h4 { font-size: 0.85rem; }
+  .design-card p { font-size: 0.75rem; }
+
+  .detail-color-preview { height: 80px; border-radius: 10px; }
+  .detail-color-name { font-size: 0.78rem; }
+
+  .compare-row { padding: 8px 10px; gap: 4px; border-radius: 8px; }
+  .compare-feature { font-size: 0.72rem; }
+  .compare-lx, .compare-exl { font-size: 0.68rem; }
+
+  .detail-versions-card { padding: 18px 16px; border-radius: 14px; }
+  .detail-version-title { font-size: 1rem; }
+  .detail-version-price { font-size: 0.9rem; margin-bottom: 14px; }
+  .detail-version-features li { font-size: 0.78rem; }
+
+  .testdrive-section { padding: 32px 16px; }
+  .testdrive-inner { gap: 16px; }
+  .testdrive-text h2 { font-size: 1.25rem; }
+  .testdrive-text p { font-size: 0.82rem; }
+  .testdrive-image { border-radius: 14px; height: 160px; }
+
+  .inventory-container { padding: 0 12px; }
+  .inv-tabs { padding: 3px; gap: 2px; }
+  .inv-tab { padding: 8px 14px; font-size: 0.75rem; }
+  .inv-toolbar { gap: 8px; margin-bottom: 16px; }
+  .inv-card { padding: 12px; border-radius: 12px; }
+  .inv-card-image { height: 140px; border-radius: 8px; }
+  .inv-card-title { font-size: 0.88rem; }
+  .inv-card-price { font-size: 0.9rem; }
+
+  .service-package { padding: 18px 14px; border-radius: 14px; }
+  .service-package h3 { font-size: 1rem; }
+  .pkg-desc { font-size: 0.78rem; }
+  .pkg-features li { font-size: 0.75rem; padding: 6px 0; }
+
+  .brand-founder { gap: 16px; }
+  .founder-quote { padding: 16px 14px; border-radius: 12px; }
+  .founder-quote blockquote { font-size: 0.88rem; }
+  .founder-metrics { gap: 10px; }
+  .brand-philosophy { gap: 12px; }
+  .philosophy-card { padding: 20px 16px; border-radius: 12px; }
+  .timeline-item { padding: 10px 0; }
+  .timeline-item p { font-size: 0.78rem; }
+
+  .pillars { padding: 36px 12px; }
+  .pillars-grid { gap: 12px; }
+  .pillar-card { padding: 18px 16px; border-radius: 12px; }
+  .pillar-card h3 { font-size: 0.95rem; }
+
+  .testimonials { padding: 36px 12px; }
+  .testimonial-card { padding: 18px 16px; border-radius: 12px; }
+
+  .benefits-grid { gap: 12px; }
+  .benefit-card { padding: 18px 16px; border-radius: 12px; }
+
+  .respuestos-benefits { padding: 40px 12px; }
+  .respuestos-benefits-grid { gap: 16px; }
+  .respuestos-benefit-card { padding: 24px 18px; border-radius: 14px; }
+
+  .taller-packages-section,
+  .taller-benefits,
+  .taller-scheduler { padding: 40px 12px; }
+  .taller-form { padding: 20px 16px; }
+  .taller-form-grid { gap: 24px; }
+  .taller-form .form-group input,
+  .taller-form .form-group select { font-size: 16px; padding: 10px 12px; }
+  .taller-form .form-group label { font-size: 0.75rem; }
+  .taller-time-btn { padding: 10px 12px; font-size: 0.78rem; }
+  .taller-calendar-wrap { gap: 16px; }
+  .taller-contact-card { padding: 20px 16px; }
+  .taller-contact-card p { font-size: 0.8rem; }
+  .cal-grid { gap: 2px; padding: 6px; }
+  .cal-nav { width: 28px; height: 28px; }
+  .contact-section-dark { padding: 40px 12px !important; }
+  .contact-section-dark .taller-contact-card { padding: 24px 18px; }
+  .contact-section-dark .taller-form .form-group input,
+  .contact-section-dark .taller-form .form-group textarea { font-size: 16px; padding: 10px 12px; }
+
+  .fin-calc-grid { gap: 16px; }
+  .fin-calculaor-card { padding: 20px 16px; border-radius: 14px; }
+  .fin-result { padding: 16px; border-radius: 12px; }
+  .fin-result-amount { font-size: 1.5rem; }
+
+  .site-footer { padding: 40px 16px 20px; }
+  .site-footer .footer-main { gap: 20px; }
+  .site-footer .footer-links { gap: 12px; }
+  .site-footer .footer-bottom { padding: 16px 0 0; gap: 6px; }
+  .footer-bottom p { font-size: 0.72rem; }
+
+  .modal { padding: 24px 16px; border-radius: 16px; }
+  .modal h2 { font-size: 1.2rem; }
+  .modal p { font-size: 0.82rem; }
+}
+
+/* --- Touch Device: disable sticky hover transforms --- */
+@media (hover: none) and (pointer: coarse) {
+  .model-card:hover,
+  .benefit-card:hover,
+  .pillar-card:hover,
+  .testimonial-card:hover,
+  .service-package:hover,
+  .specs-hero-card:hover,
+  .spec-card:hover,
+  .feature-card:hover,
+  .model-card:hover,
+  .philosophy-card:hover,
+  .gallery-side-card:hover,
+  .benefit-card-model:hover,
+  .testimonial-card-model:hover,
+  .related-card:hover,
+  .respuestos-benefit-card:hover,
+  .btn-primary:hover {
+    transform: none !important;
+  }
+  .model-card:active,
+  .btn-primary:active {
+    transform: scale(0.98) !important;
+  }
+  .nav-dropdown:hover .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .nav-dropdown.dropdown-open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 /* --- Reduced Motion --- */
