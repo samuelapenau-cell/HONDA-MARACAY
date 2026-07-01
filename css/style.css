@@ -5387,82 +5387,6 @@ html {
   line-height: 1.6;
 }
 
-/* --- Financing --- */
-.model-financing {
-  padding: 80px 24px 100px;
-  background: #f5f6f8;
-}
-.financing-grid {
-  max-width: var(--max-width);
-  margin: 48px auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.financing-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 36px 28px;
-  border: 1px solid rgba(0,0,0,0.06);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.4s var(--ease-out-expo);
-}
-.financing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-}
-.financing-badge {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--honda-red);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 16px;
-  border-radius: 50px;
-}
-.financing-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.financing-price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-.financing-price small {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--gray);
-}
-.financing-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px;
-  flex: 1;
-}
-.financing-card ul li {
-  font-size: 0.85rem;
-  color: var(--gray);
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-.financing-card ul li::before {
-  content: '✓';
-  color: var(--honda-red);
-  font-weight: 700;
-  margin-right: 8px;
-}
-
 /* --- Model Testimonials --- */
 .model-testimonials {
   padding: 80px 24px 100px;
@@ -5585,11 +5509,74 @@ html {
   color: var(--honda-red);
 }
 
+/* --- Technical Specifications --- */
+.model-specs {
+  padding: 80px 24px 100px;
+  background: #f5f6f8;
+}
+.model-specs .specs-grid,
+.model-specs .section-header {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  transition: all 0.3s var(--ease-out-expo);
+}
+.spec-item:hover {
+  border-color: rgba(228,0,43,0.12);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transform: translateY(-2px);
+}
+.spec-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(228,0,43,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.spec-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--honda-red);
+  fill: none;
+  stroke-width: 1.5;
+}
+.spec-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  margin-bottom: 2px;
+}
+.spec-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 /* Responsive */
 @media (max-width: 968px) {
   .model-gallery-inner { grid-template-columns: 1fr; }
   .model-benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  .financing-grid { grid-template-columns: 1fr; max-width: 420px; }
+  .specs-grid { grid-template-columns: 1fr; }
   .model-testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
   .related-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .related-image { width: 160px; height: 120px; }
@@ -5599,7 +5586,7 @@ html {
   .model-gallery-main { min-height: 240px; }
   .model-benefits { padding: 60px 16px; }
   .model-benefits-grid { grid-template-columns: 1fr; }
-  .model-financing { padding: 60px 16px; }
+  .model-specs { padding: 60px 16px; }
   .model-testimonials { padding: 60px 16px; }
   .model-related { padding: 60px 16px; }
   .related-image { width: 120px; height: 100px; }
@@ -5637,7 +5624,7 @@ html {
   .btn-magnetic, .btn-ripple, .ripple-effect,
   .parallax-layer, .card-shell, .card-core,
   .tag-weight-cycle,
-  .gallery-side-card, .benefit-card-model, .financing-card,
+  .gallery-side-card, .benefit-card-model,
   .testimonial-card-model, .related-card {
     opacity: 1;
     transform: none;
