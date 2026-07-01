@@ -5591,7 +5591,11 @@ html {
   color: var(--text);
 }
 
-/* Responsive */
+/* ============================================
+   MOBILE OPTIMIZATION — Comprehensive
+   ============================================ */
+
+/* --- Tablet (max-width: 968px) --- */
 @media (max-width: 968px) {
   .model-gallery-inner { grid-template-columns: 1fr; }
   .model-benefits-grid { grid-template-columns: repeat(2, 1fr); }
@@ -5599,16 +5603,165 @@ html {
   .model-testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
   .related-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .related-image { width: 160px; height: 120px; }
+
+  .page-hero { padding: 110px 20px 60px; }
+  .page-hero--short { padding: 100px 20px 50px; }
+
+  .inv-layout { grid-template-columns: 1fr; }
+  .inv-filters { display: none; }
+  .inv-tabs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .faq-section { padding: 50px 20px 60px; }
+
+  .color-carousel-viewport { height: 280px; }
+  .color-arrow { opacity: 1; width: 36px; height: 36px; }
+
+  .detail-versions-grid { grid-template-columns: 1fr; }
+
+  .brand-founder { grid-template-columns: 1fr; gap: 32px; }
+  .founder-quote { padding: 28px 24px; }
+  .founder-metrics { grid-template-columns: repeat(2, 1fr); }
+  .brand-philosophy { grid-template-columns: repeat(2, 1fr); }
+
+  .model-download-bottom { padding: 0 20px 50px; }
+  .model-download-bottom .detail-download-card { padding: 30px 28px !important; }
+
+  .hero-content { margin-top: -20px; }
 }
+
+/* --- Mobile (max-width: 640px) --- */
 @media (max-width: 640px) {
   .model-gallery { padding: 60px 16px; }
   .model-gallery-main { min-height: 240px; }
+  .model-gallery-badges { bottom: 12px; left: 12px; gap: 6px; }
+  .gallery-badge { font-size: 0.65rem; padding: 4px 10px; }
+  .gallery-side-card { padding: 18px 16px; }
+  .gallery-side-icon { width: 36px; height: 36px; }
+  .gallery-side-card h4 { font-size: 0.9rem; }
+  .gallery-side-card p { font-size: 0.78rem; }
+
   .model-benefits { padding: 60px 16px; }
   .model-benefits-grid { grid-template-columns: 1fr; }
+  .benefit-card-model { padding: 24px 18px; }
+  .benefit-model-icon { width: 42px; height: 42px; }
+  .benefit-card-model h3 { font-size: 0.95rem; }
+  .benefit-card-model p { font-size: 0.8rem; }
+
   .model-specs { padding: 60px 16px; }
+  .spec-item { padding: 14px 16px; gap: 12px; }
+  .spec-icon { width: 36px; height: 36px; }
+  .spec-icon svg { width: 18px; height: 18px; }
+  .spec-value { font-size: 0.85rem; }
+
   .model-testimonials { padding: 60px 16px; }
+  .testimonial-card-model { padding: 22px 18px; }
+  .testimonial-card-model > p { font-size: 0.82rem; }
+  .testimonial-author-model .testimonial-avatar { width: 34px; height: 34px; font-size: 0.8rem; }
+
   .model-related { padding: 60px 16px; }
   .related-image { width: 120px; height: 100px; }
+  .related-info { padding: 14px 16px; }
+  .related-info h4 { font-size: 0.95rem; }
+
+  .model-download-bottom { padding: 0 16px 50px; }
+  .model-download-bottom .detail-download-card { padding: 28px 20px !important; }
+  .model-download-bottom .detail-download-icon { width: 52px; height: 52px; }
+  .model-download-bottom .detail-download-text h4 { font-size: 1.05rem !important; }
+  .model-download-bottom .detail-download-text p { font-size: 0.82rem !important; }
+
+  .page-hero { padding: 100px 16px 50px; }
+  .page-hero--short { padding: 90px 16px 40px; }
+
+  .faq-section { padding: 40px 16px 50px; }
+  .faq-question { padding: 14px 16px; font-size: 0.82rem; }
+  .faq-answer p { padding: 0 16px 14px; font-size: 0.8rem; }
+
+  .color-carousel-viewport { height: 220px; }
+  .color-carousel-slide { padding: 16px; }
+  .color-arrow { width: 32px; height: 32px; }
+  .color-swatches { gap: 8px; }
+  .color-swatch { width: 28px; height: 28px; }
+
+  .detail-versions-card { padding: 24px 20px; }
+  .detail-version-title { font-size: 1.1rem; }
+  .detail-version-price { font-size: 1rem; }
+
+  .inventory-container { padding: 0 16px; }
+  .inv-toolbar { flex-direction: column; align-items: stretch; }
+  .inv-search-wrap { min-width: 0; }
+  .inv-sort { width: 100%; }
+  .inv-grid { grid-template-columns: 1fr; }
+  .inv-card { padding: 16px; }
+  .inv-card-image { height: 180px; }
+
+  .service-package { padding: 28px 20px; }
+  .pkg-features li { font-size: 0.82rem; padding: 8px 0; }
+  .financing-card { padding: 28px 18px; }
+  .financing-card h3 { font-size: 1rem; }
+  .financing-price { font-size: 1.6rem; }
+
+  .brand-founder { gap: 24px; }
+  .founder-quote { padding: 22px 18px; }
+  .founder-quote blockquote { font-size: 1rem; }
+  .founder-metrics { grid-template-columns: 1fr; gap: 16px; }
+  .brand-philosophy { grid-template-columns: 1fr; }
+  .timeline-item { padding: 16px 0; }
+  .timeline-item p { font-size: 0.85rem; }
+
+  .site-footer .footer-main { gap: 28px; }
+  .site-footer .footer-links { gap: 20px; }
+  .site-footer .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* --- Small Mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .hero { min-height: 92vh; }
+  .hero-content { margin-top: 0; padding: 0 16px; }
+  .hero-badge { font-size: 0.65rem; margin-bottom: 20px; padding: 5px 14px; }
+  .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem) !important; }
+  .hero-sub { font-size: 0.9rem !important; margin-bottom: 24px; }
+  .hero-phrase { font-size: 0.88rem; }
+  .hero-phrase::before { left: -16px; font-size: 1.8rem; }
+  .hero-phrase::after { right: -16px; font-size: 1.8rem; }
+  .hero-stats { gap: 20px; margin-top: 32px; flex-wrap: wrap; }
+  .stat-num { font-size: 1.1rem; }
+  .stat-label { font-size: 0.68rem; }
+  .hero-scroll { bottom: 20px; }
+
+  .model-gallery { padding: 40px 12px; }
+  .model-gallery-main { min-height: 180px; }
+  .model-benefits { padding: 40px 12px; }
+  .model-specs { padding: 40px 12px; }
+  .model-testimonials { padding: 40px 12px; }
+  .model-related { padding: 40px 12px; }
+  .related-image { width: 100px; height: 80px; }
+
+  .page-hero { padding: 80px 12px 40px; }
+  .page-hero--short { padding: 75px 12px 32px; }
+
+  .faq-section { padding: 30px 12px 40px; }
+  .faq-question { padding: 12px 14px; font-size: 0.78rem; }
+
+  .detail-hero--immersive { min-height: 70vh; padding-left: 16px; }
+  .detail-hero-body { padding: 20px 16px; }
+  .detail-hero-title { font-size: clamp(2rem, 10vw, 3rem) !important; }
+  .detail-hero-title::after { width: 50px; height: 3px; margin-top: 10px; }
+  .detail-hero-tagline { font-size: 0.95rem; padding: 4px 14px; }
+  .detail-hero-desc { font-size: 0.85rem; }
+
+  .color-carousel-viewport { height: 180px; border-radius: 14px; }
+  .color-carousel-slide { padding: 10px; }
+  .color-carousel { gap: 12px; }
+
+  .detail-versions-card { padding: 20px 16px; }
+  .detail-versions-grid { gap: 16px; }
+
+  .inv-card-image { height: 150px; }
+
+  .service-package { padding: 22px 16px; }
+  .packages-grid { gap: 14px; }
+
+  .footer-main { gap: 24px; }
 }
 
 /* --- Reduced Motion --- */
