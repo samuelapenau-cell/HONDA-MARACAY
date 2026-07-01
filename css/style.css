@@ -3339,13 +3339,19 @@ input, select, textarea {
 }
 
 .detail-hero-tagline {
+  display: inline-block;
   font-size: 1.25rem;
-  color: var(--honda-red);
+  color: #ff4757;
   font-weight: 500;
   letter-spacing: 0.01em;
   margin-bottom: 16px;
   max-width: 600px;
-  text-shadow: 0 1px 20px rgba(0,0,0,0.25);
+  text-shadow: 0 0 30px rgba(255,71,87,0.3), 0 2px 24px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.25);
+  padding: 6px 18px;
+  border-radius: 50px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .detail-hero-desc {
